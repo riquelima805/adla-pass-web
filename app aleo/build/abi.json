@@ -1,0 +1,88 @@
+{
+  "program": "adla_zpass_rique.aleo",
+  "structs": [],
+  "records": [
+    {
+      "path": [
+        "ZPass"
+      ],
+      "fields": [
+        {
+          "name": "owner",
+          "ty": {
+            "Primitive": "Address"
+          },
+          "mode": "None"
+        },
+        {
+          "name": "name_hash",
+          "ty": {
+            "Primitive": "Field"
+          },
+          "mode": "None"
+        },
+        {
+          "name": "is_adult",
+          "ty": {
+            "Primitive": "Boolean"
+          },
+          "mode": "None"
+        }
+      ]
+    }
+  ],
+  "mappings": [],
+  "storage_variables": [],
+  "transitions": [
+    {
+      "name": "mint_zpass",
+      "is_async": false,
+      "inputs": [
+        {
+          "name": "birth_year",
+          "ty": {
+            "Plaintext": {
+              "Primitive": {
+                "UInt": "U16"
+              }
+            }
+          },
+          "mode": "None"
+        },
+        {
+          "name": "current_year",
+          "ty": {
+            "Plaintext": {
+              "Primitive": {
+                "UInt": "U16"
+              }
+            }
+          },
+          "mode": "None"
+        },
+        {
+          "name": "user_name_hash",
+          "ty": {
+            "Plaintext": {
+              "Primitive": "Field"
+            }
+          },
+          "mode": "None"
+        }
+      ],
+      "outputs": [
+        {
+          "ty": {
+            "Record": {
+              "path": [
+                "ZPass"
+              ],
+              "program": "adla_zpass_rique"
+            }
+          },
+          "mode": "None"
+        }
+      ]
+    }
+  ]
+}
