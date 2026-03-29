@@ -1,5 +1,4 @@
-
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import { useWallet } from '@demox-labs/aleo-wallet-adapter-react';
 import { WalletMultiButton } from '@demox-labs/aleo-wallet-adapter-reactui';
 import {
@@ -68,13 +67,18 @@ function App() {
 
       const aleoTransaction = Transaction.createTransaction(
         publicKey,
-        WalletAdapterNetwork.TestnetBeta,
+        WalletAdapterNetwork.TestnetBeta, 
         'adla_zpass_rique.aleo',
         'mint_zpass',
         inputs,
         50_000,
         false
       );
+
+      
+      if (!requestTransaction) {
+        throw new Error("A função da carteira ainda não carregou. Tente novamente.");
+      }
 
       const transactionId = await requestTransaction(aleoTransaction);
       setTxId(transactionId);
@@ -128,7 +132,7 @@ function App() {
                 </button>
               ) : (
                 <div className="success-block">
-                  <img src="/check.png" alt="Verified" className="icon-img check-icon" />
+                  <img src="./check.png" alt="Verified" className="icon-img check-icon" />
                   <p className="user-email">{user?.email?.address}</p>
                   <span className="verified-badge">verified</span>
                 </div>
@@ -196,7 +200,7 @@ function App() {
               </div>
 
               <div className="zk-disclaimer">
-                <img src="/alert.png" alt="Secure" className="icon-img tiny-icon" />
+                <img src="./alert.png" alt="Secure" className="icon-img tiny-icon" />
                 <p>Your data is encrypted and proven without revealing original content.</p>
               </div>
             </div>
@@ -216,13 +220,13 @@ function App() {
             
             {isProcessing ? (
               <div className="loading-state">
-                <h2>CLAIM ZPASS</h2>
-                <img src="/wave.png" alt="Processing" className="icon-img pulse-anim" />
+                <h2>CLAIM ADLAPASS</h2>
+                <img src="./wave.png" alt="Processing" className="icon-img pulse-anim" />
                 <p className="sub-text">Generating your proof and minting...</p>
               </div>
             ) : (
               <div className="success-state">
-                <img src="/pass.png" alt="ADLA PASS" className="pass-card-img" />
+                <img src="./pass.png" alt="ADLA PASS" className="pass-card-img" />
                 <h3 className="success-title">SUCCESS!</h3>
                 <p className="tx-text">TxID: {txId}</p>
                 <button 
